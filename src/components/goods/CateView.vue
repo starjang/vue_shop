@@ -80,15 +80,14 @@
 
       <el-form label-width="120px">
         <el-form-item label="父级分类">
-
           <!-- options用来指定数据源 -->
           <!-- props用来指定数据对象 -->
           <el-cascader
           v-model="selectedKeys"
           :options="parentCateList"
           :props="cascaderProps"
-          @change="parentCateChanged" clearable size="large"/>
-
+          @change="parentCateChanged" placeholder="请选择分类" clearable>
+          </el-cascader>
         </el-form-item>
       </el-form>
 
@@ -171,7 +170,8 @@ export default {
         label: 'cat_name',
         children: 'children',
         expandTrigger: 'hover',
-        checkStrictly: true
+        //emitPath: true,
+        checkStrictly: true,
         //multiple: true
       },
       // 选中的父级分类的id数组
@@ -236,12 +236,27 @@ export default {
         this.addCateFrom.cat_level = 0;
       }
     },
+    // 点击按钮, 添加新分类
     addCate() {
-      console.log(this.addCateFrom);
-
-      this.addCateDialogVisible = false;
+      //console.log(this.addCateFrom);
+      this.$refs.addCateFormRef.validate(async valid => {
+        if (!valid) return
+           const {data: res} = await this.$http.post('categories', this.addCateFrom);
+           if (res.meta.status !== 201) {
+            return this.$message.error('添加分类失败!');
+           }
+           this.$message.success('添加分类成功!');
+           this.getCateList();
+           this.addCateDialogVisible = false;
+      });
+    },
+    // 监听对话框关闭事件, 重置表单数据
+    setRightDialogClosed() {
+      this.$refs.addCateFormRef.resetFields();
+      this.selectedKeys = [];
+      this.addCateFrom.cat_level = 0;
+      this.addCateFrom.cat_pid = 0;
     }
-
   }
 }
 </script>
@@ -251,5 +266,7 @@ export default {
 .vxe-table {
   margin-top: 15px;
 }
-
+.el-form-item {
+  width: 100%;
+}
 </style>

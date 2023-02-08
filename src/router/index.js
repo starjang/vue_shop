@@ -6,6 +6,9 @@ import UsersView from '../components/user/UsersView.vue'
 import RightsView from '../components/power/RightsView.vue'
 import RolesView from '../components/power/RolesView.vue'
 import CateView from '../components/goods/CateView.vue'
+import ParamsView from '../components/goods/ParamsView.vue'
+import ListView from '../components/goods/ListView.vue'
+import GoodsAddView from '../components/goods/AddView.vue'
 
 
 const router = createRouter({
@@ -41,6 +44,18 @@ const router = createRouter({
                 {
                     path: '/categories',
                     component: CateView
+                },
+                {
+                    path: '/params',
+                    component: ParamsView
+                },
+                {
+                    path: '/goods',
+                    component: ListView
+                },
+                {
+                    path: '/goods/add',
+                    component: GoodsAddView
                 }
             ]
         },
