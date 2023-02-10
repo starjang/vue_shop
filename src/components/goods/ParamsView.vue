@@ -352,6 +352,7 @@ export default {
         //this.itemRefs[row.index].focus();
         //console.log(row.inputRef);
         //this.$refs['inputRef'][index].focus();
+        this.$refs.inputRef.focus();
       })
     },
     // 删除对应tag

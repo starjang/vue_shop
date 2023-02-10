@@ -9,6 +9,7 @@ import CateView from '../components/goods/CateView.vue'
 import ParamsView from '../components/goods/ParamsView.vue'
 import ListView from '../components/goods/ListView.vue'
 import GoodsAddView from '../components/goods/AddView.vue'
+import OrderView from '../components/Order/OrderView.vue'
 
 
 const router = createRouter({
@@ -56,6 +57,10 @@ const router = createRouter({
                 {
                     path: '/goods/add',
                     component: GoodsAddView
+                },
+                {
+                    path: '/orders',
+                    component: OrderView
                 }
             ]
         },
