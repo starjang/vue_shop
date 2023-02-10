@@ -18,17 +18,28 @@ import axios from 'axios'
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/style.css'
 
+import 'nprogress/nprogress.css'
+import NProgress from 'nprogress'
+
 const app = createApp(App);
 
 // baseURL
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/';
 // axios请求拦截
+// 在request拦截器中展示进度条
+
 axios.interceptors.request.use(config => {
+    // 展示进度条
+    NProgress.start();
     // 请求头添加token
     config.headers.Authorization = window.sessionStorage.getItem('token');
     return config;
 });
-
+// 在response中隐藏进度条
+axios.interceptors.response.use(config => {
+    NProgress.done();
+    return config
+});
 // 全局变量 用prototype绑定vue实列
 app.config.globalProperties.$http = axios;
 
