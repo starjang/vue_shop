@@ -9,8 +9,8 @@ import CateView from '../components/goods/CateView.vue'
 import ParamsView from '../components/goods/ParamsView.vue'
 import ListView from '../components/goods/ListView.vue'
 import GoodsAddView from '../components/goods/AddView.vue'
-import OrderView from '../components/Order/OrderView.vue'
-
+import OrderView from '../components/orders/OrderView.vue'
+import ReportView from '../components/report/ReportView.vue'
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -61,6 +61,10 @@ const router = createRouter({
                 {
                     path: '/orders',
                     component: OrderView
+                },
+                {
+                    path: '/reports',
+                    component: ReportView
                 }
             ]
         },
