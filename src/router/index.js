@@ -1,5 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import LoginView from '../components/LoginView.vue'
+
+// 路由懒加载
+//import LoginView from '../components/LoginView.vue'
+const LoginView = () =>
+    import ( /* webpackChunkName: "login_home_welcome" */ '../components/LoginView.vue')
+
 import HomeView from '../components/HomeView.vue'
 import WelcomeView from '../components/WelcomeView.vue'
 import UsersView from '../components/user/UsersView.vue'

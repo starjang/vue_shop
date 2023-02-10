@@ -6,6 +6,7 @@
 
       <div>
         <img src="../assets/logo.png" alt="">
+        <title>{%= htmlWebpackPlugin.options.title %}</title>
         <span>电商管理系统</span>
       </div>
       <el-button type="info" @click="loginout">退出</el-button>
